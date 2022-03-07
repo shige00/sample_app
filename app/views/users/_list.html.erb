@@ -1,0 +1,40 @@
+<div class="movies-box">
+    <% if movies.empty? %>
+        <h2 class="noting">まだ<%= text %>はありません。</h2>
+    <% else %>
+        <% movies.each do |movie| %>
+            <div class="movie-box howto">
+                <% if movie.movie.attached? %>
+                    <%= link_to movie do %>
+                        <%= image_tag movie.movie.preview(resize: "400x400").processed, class:"movie-pre"%>
+                    <% end %>
+                <% end %>
+                <div class="movie-info">
+                    <div class="movie-left">
+                        <%= link_to movie.title.truncate(16), movie, class:"movie-title" %>
+                        <% if movie.auther.nil? %>
+                            <p class="movie-auther"><%= "投稿者:no_name" %></p>
+                        <% else %>
+                            <p class="movie-auther"><%= "投稿者:#{movie.auther}" %></p>
+                        <% end %>
+                    </div>
+                    <div class="movie-right">
+                        <% if user_signed_in? && movie.user_id == current_user.id %>
+                            <%= link_to edit_movie_path(movie), class:"edit-movie" do%>
+                                <%= image_tag  "/images/hensyu.png", :size =>'30x30'%>
+                            <% end %>
+                            <%= link_to  movie, method: :delete, data: { confirm: '本当に削除しますか？' }, class:"edit-movie" do%>
+                                <%= image_tag  "/images/sakujyo.png", :size =>'30x30'%>
+                            <% end %>
+                            <p class="fa fa-heart" style="color: #e54747;"><%= movie.likes.count %></p>
+                        <% else  %>
+                            <div id="likes_buttons_<%= movie.id %>">
+                                <%= render partial: 'likes/like', locals: {movie: movie} %>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+</div>

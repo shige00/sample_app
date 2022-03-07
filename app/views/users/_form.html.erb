@@ -1,0 +1,46 @@
+<%= form_with(model: user, local: true, class:"form") do |form| %>
+    <% if user.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(user.errors.count, "件") %> のエラーが発生したため保存されませんでした。</h2>
+
+            <ul>
+            <% user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+            </ul>
+        </div>
+    <% end %>
+    
+    <% if user.avatar.attached? %>
+    <div class="prev-content">
+        <%= image_tag user.avatar, :size =>'200x200', alt: "preview", class: "prev-image" %>
+    </div>
+    <% else %>
+    <div class="prev-content">
+        <%= image_tag "/images/avatar.png", :size =>'200x200', alt: "preview", class: "prev-image" %>
+    </div>
+    <% end %>
+
+    <div class="field">
+        <%= form.label :アイコン , class:"text" %>
+        <div id="attachment">
+        <label class="file-select">
+            <%= form.file_field :avatar, class:"fileinput image_form_contents_field hidden_file"%>ファイルを選択
+        </label>
+        <% if user.avatar.attached? %>
+            <br class="brbr"><span class="filename">選択済み</span>
+        <% else %>
+            <br class="brbr"><span class="filename">選択されていません</span>
+        <% end %>
+        </div>
+    </div>
+
+    <div class="field">
+        <%= form.label :名前（10文字以内） , class:"text"%>
+        <%= form.text_field :name, class:"text-title" %>
+    </div>
+
+    <div class="actions">
+        <%= form.submit "決定する"%>
+    </div>
+<% end %> 

@@ -1,0 +1,86 @@
+<p id="notice"><%= notice %></p>
+<div class="movie-container">
+  <h2 class="howto-title">Question</h2>
+  <div class="movie">
+    <% if @movie.movie.attached? %>
+      <video src="<%= rails_blob_path(@movie.movie) %>" type="video/mp4" controls></video>
+    <% end %>
+    <div class="movie-title">
+      <p class="title">
+        <%= @movie.title %>
+      </p>
+      <p class="created">
+        <%= @movie.created_at %>
+      </p>
+      <p>
+      <% if user_signed_in? && @movie.user_id == current_user.id %>
+        <%= link_to edit_question_path(@movie), class:"edit-movie" do%>
+          <%= image_tag  "/images/hensyu.png", :size =>'30x30'%>
+        <% end %>
+        <%= link_to  @movie, method: :delete, data: { confirm: '本当に削除しますか？' }, class:"edit-movie" do%>
+          <%= image_tag  "/images/sakujyo.png", :size =>'30x30'%>
+        <% end %>
+      <% elsif user_signed_in? && current_user.admin?%>
+        <%= link_to  @movie, method: :delete, data: { confirm: '管理者権限で削除しますか？' }, class:"edit-movie" do%>
+          <%= image_tag  "/images/sakujyo.png", :size =>'30x30'%>
+        <% end %>
+      <% end %>
+      </p>
+    </div> 
+
+    <div class="avatar">
+      <%= link_to @user do%>
+        <div class="avatar-icon">
+          <% if @user.avatar.attached? %>
+            <%= image_tag @user.avatar, :size =>'40x40', class:'icon' %>
+          <% else %>
+            <%= image_tag "/images/avatar.png", :size =>'40x40',  class: "icon" %>
+          <% end %>
+        </div>
+        <% if @likes.count + @nices.count >= 100%>
+          <p class="symbol teacher">先生</p>
+        <% else %>
+          <p class="symbol student">生徒</p>
+        <% end %>
+        <p class="avatar-name">
+          <% if @user.name.nil? %>
+            <%= "no_name" %>
+          <% else %>
+            <%= @user.name%>
+          <% end %>
+        </p>
+      <% end %>
+      <div id="follow-button-<%= @user.id %>" class="follow-button">
+        <%= render partial: 'relationships/follow', locals: {user: @user} %>
+      </div>
+    </div>
+
+    <div class="option">
+      <input type="checkbox" id="toggle1" class="toggle">
+      <label class="title" for="toggle1">質問</label>
+      <div class="content">
+        <p class="info">
+          <%=  @movie.content %>
+        </p>
+      </div>
+    </div> 
+
+    <div class="option">
+      <input type="checkbox" id="toggle2" class="toggle">
+      <label class="title" for="toggle2">回答一覧</label>
+      <div class="content">
+        <% if user_signed_in? %> 
+          <%= render 'answers/new', movie: @movie %>
+        <% end %>
+        <div id="answers" class="comments">
+          <% if @movie.answers.empty? %>
+            <p class="no-come">回答がありません。</p>
+          <% else %>
+            <%= render @movie.answers %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

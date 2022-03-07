@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>How-to.tube</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" contents="noindex" >
+    <title>a</title> 
+    <meta name="description" content="">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="">
+    <meta property="twitter:title" content="">
+    <meta property="twitter:description" content="">
+    <meta property="twitter:image" content="">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header-inner">
+        <h1 class="header-logo">
+        　<a href="/">
+            <img src="<%= "/images/icon.png" %>" alt="アイコン" class="logo-icon">
+            <p>How-to.Tube</p>
+        　</a>
+        </h1>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% if user_signed_in? %>
+            <%= link_to 'プロフィール', user_path(current_user), class: "nav-link sp" %>
+            <%= link_to 'how-to投稿', movies_path, class: "nav-link sp" %>
+            <%= link_to '質問投稿', questions_path, class: "nav-link sp" %>
+            <%= link_to 'ログアウト', destroy_user_session_path, class: "nav-link sp", method: :delete %>
+            <div class="hamburger-menu">
+              <input type="checkbox" id="menu-btn-check">
+              <label for="menu-btn-check" class="menu-btn"><span></span></label>
+              <div class="menu-content">
+                <ul>
+                  <li>
+                    <%= link_to 'プロフィール', user_path(current_user), class: "nav-link" %>
+                  </li>
+                  <li>
+                    <%= link_to 'how-to投稿', movies_path, class: "nav-link" %>
+                  </li>
+                  <li>
+                    <%= link_to '質問投稿', questions_path, class: "nav-link" %>
+                  </li>
+                  <li>
+                    <%= link_to 'ログアウト', destroy_user_session_path, class: "nav-link", method: :delete %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <% else %>
+            <%= link_to '新規登録', new_user_registration_path, class: "nav-link sp" %>
+            <%= link_to 'how-to投稿', movies_path, class: "nav-link sp" %>
+            <%= link_to '質問投稿', questions_path, class: "nav-link sp" %>
+            <%= link_to 'ログイン', new_user_session_path, class: "nav-link sp" %>
+            <div class="hamburger-menu">
+              <input type="checkbox" id="menu-btn-check">
+              <label for="menu-btn-check" class="menu-btn"><span></span></label>
+              <div class="menu-content">
+                <ul>
+                  <li>
+                    <%= link_to '新規登録', new_user_registration_path, class: "nav-link" %>
+                  </li>
+                  <li>
+                    <%= link_to 'how-to投稿', movies_path, class: "nav-link" %>
+                  </li>
+                  <li>
+                    <%= link_to '質問投稿', questions_path, class: "nav-link" %>
+                  </li>
+                  <li>
+                    <%= link_to 'ログイン', new_user_session_path, class: "nav-link" %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <% if notice %>
+      <p class="flash"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="flash"><%= alert %></p>
+    <% end %>
+    <%= yield %>
+
+  </body>
+</html>

@@ -1,0 +1,74 @@
+<div class="avatar-inner">
+    <div class="avatar-info">
+        <div class="avatar-left">
+            <div class="avatar-icon">
+                <% if @user.avatar.attached? %>
+                    <%= image_tag @user.avatar, :size =>'200x200', class:'icon' %>
+                <% else %>
+                    <%= image_tag "/images/avatar.png", :size =>'200x200',  class: "icon" %>
+                <% end %>
+            </div>
+            <p>総いいね数<%= @likes.count + @nices.count %></p>
+        </div>
+        <div class="avatar-right">
+            <div class="avatar-name">
+                <% if @likes.count + @nices.count >= 100%>
+                    <p class="mark teacher">先生 </p>
+                    <% if @user.name.nil? %>
+                        <p class="name"><%= "no_name" %></p>
+                    <% else %>
+                        <p class="name"><%= @user.name%></p>
+                    <% end %>
+                <% else %>
+                    <p class="mark student">生徒 </p>
+                    <% if @user.name.nil? %>
+                        <p class="name"><%= "no_name" %></p>
+                    <% else %>
+                        <p class="name"><%= @user.name%></p>
+                    <% end %>
+                <% end %>
+            </div>
+            <div class="avatar-edit">
+                <%= link_to "#{@follows.count}フォロー", "/users/#{@user.id}/follow", class: "nav-link"%>
+                <%= link_to "#{@followers.count}フォロワー", "/users/#{@user.id}/follower", class: "nav-link"%>
+                <% if user_signed_in? && current_user.id == @user.id %>
+                    <br><%= link_to '画像・名前変更', edit_user_path(@user), class: "nav-link"%>
+                    <%= link_to 'ユーザー情報編集', edit_user_registration_path, class: "nav-link" %>
+                <% else %>
+                    <div id="follow-button-<%= @user.id %>" class="follow-button">
+                        <%= render partial: 'relationships/follow', locals: {user: @user} %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <ul class="tab-list list-unstyled">
+        <li class="tab tab-active">
+            How-to投稿
+        </li>
+        <li class="tab">
+            いいねしたHow-to
+        </li>
+        <li class="tab">
+            質問投稿
+        </li>
+        <li class="tab">
+            いいねした回答
+        </li>
+    </ul>
+    <!--タブで選択された要素部分-->
+    <div class="tabbox-contents">
+        <div class="tabbox box-show">
+            <%= render partial: 'users/list', locals: {text: "How-to投稿", movies: @movies} %>   
+        </div>
+        <div class="tabbox">
+            <%= render partial: 'users/list', locals: {text: "いいねしたHow-to投稿", movies: @like_movies} %>   
+        </div>
+        <div class="tabbox">
+            <%= render partial: 'users/queslist', locals: {questions: @questions} %>   
+        </div>
+        <div class="tabbox">
+            <%= render partial: 'users/anslist', locals: {answers: @nice_answers} %>   
+        </div>
+    </div>
+</div>

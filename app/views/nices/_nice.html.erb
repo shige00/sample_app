@@ -1,0 +1,15 @@
+<% if user_signed_in? %>
+    <% if current_user.niced_by?(answer.id) %>
+        <td><%= link_to  destroy_nice_path(answer), method: :DELETE, remote: true do %>
+                <i class="fa fa-heart unlike-btn" style="color: #e54747;"></i>
+            <% end %>
+            <%= answer.nices.count %>
+        </td>
+    <% else %>
+        <td><%= link_to  create_nice_path(answer), method: :POST, remote: true do %>
+                <i class="fa fa-heart like-btn" style="color: #808080"></i>
+            <% end %> 
+            <%= answer.nices.count %>
+        </td>
+    <% end %>
+<% end %>

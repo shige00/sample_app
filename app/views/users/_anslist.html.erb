@@ -1,0 +1,30 @@
+<div class="movies-box">
+    <% if answers.empty? %>
+        <h2 class="noting">まだいいねした回答はありません。</h2>
+    <% else %>
+        <% answers.each do |answer| %>
+            <% question = Question.find(answer.question_id) %>
+            <div class="movie-box question">
+                <div class="movie-info">
+                    <div class="movie-left">
+                        <%= link_to "回答:#{answer.content.truncate(71)}", question , class:"movie-title"%>
+                        <% if answer.auther.nil? %>
+                            <%= link_to "回答者:no_name", question , class:"movie-auther" %>
+                        <% else %>
+                            <%= link_to "回答者:#{answer.auther}", question , class:"movie-auther" %>
+                        <% end %>
+                    </div>
+                    <div class="movie-right">
+                        <% if user_signed_in? && answer.user_id == current_user.id %>
+                            <p class="fa fa-heart" style="color: #e54747;"><%= answer.nices.count %></p>
+                        <% else %>
+                            <div id="nices_buttons_<%= answer.id %>">
+                                <%= render partial: 'nices/nice', locals: {answer: answer} %>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+</div>

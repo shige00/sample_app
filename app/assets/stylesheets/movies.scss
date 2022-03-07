@@ -1,0 +1,406 @@
+$sp: 1000px; 
+$mb: 599px;
+$smb: 390px;
+@mixin sp {
+    @media (max-width: ($sp)) {
+        @content;
+    }
+}
+@mixin mb {
+    @media (max-width: ($mb)) {
+        @content;
+    }
+}
+@mixin smb {
+    @media (max-width: ($smb)) {
+        @content;
+    }
+}
+//投稿一覧
+.movies{
+    max-width: 1440px;
+    height: 100%;
+    margin: 0 auto;
+    margin-top: 120px;
+    padding: 0 10px;
+    position: relative;
+    .search-form{
+        .search_container{
+            box-sizing: border-box;
+            position: relative;
+            border: solid 1px #5a5959;
+            display: block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            height: 2.3em;
+            width: 265px;
+            overflow: hidden;
+            @include mb{
+                width: 100%;
+            }
+            input{
+                border: none;
+                height: 2.0em;
+            }
+            input:focus {
+                outline: 0;
+            }
+            .btn-s-md{
+                cursor: pointer;
+                border: none;
+                background: #3879D9;
+                color: #fff;
+                position: absolute;
+                width: 3.5em;
+                height: 3.0em;
+                right:0px;
+                top: -3px;
+                outline : none;
+            }
+        }
+    }  
+    .new-movie{
+        position: absolute;
+        top: 0;
+        right: 30px;
+        display: block;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        background-color: #444444;
+        border: 2px solid #444444;
+        padding: 3px 10px;
+        border-radius: 20px;
+        p{
+            font-size: 18px;
+            color: #fff;
+            @include mb{
+                font-size: 14px;
+            }
+        }
+        @include mb{
+            top: 50px;
+            right: 10px;
+            padding: 2px 5px;
+        }
+    }
+    .new-movie:hover{
+        box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+        transform: translateY(-1px);
+    }
+    .movies-container{
+        width: 100%;
+        margin-top: 20px;
+        @include mb{
+            margin-top: 60px;
+        }
+        .movie-boxs{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            .movie-box{
+                width: 25%;
+                display: flex;
+                flex-direction: column;
+                border-radius: 5px;
+                box-shadow: 0px 3px 6px #00000029;
+                padding:5px;
+                position: relative;
+                padding-bottom: 30px;
+                .movie-pre{
+                    width: 100%;
+                    border-radius: 20px;
+                }
+                .movie-title{
+                    font-weight: bold;
+                    line-height: 1.4;
+                    color:#444444;
+                }
+                .movie-auther{
+                    color: #444444;
+                    font-size: 14px;
+                    line-height: 1.4;
+                    position: absolute;
+                    bottom: 5px;
+                }
+                @include sp{
+                    width: 50%;
+                }
+                @include mb{
+                    width: 100%;
+                }
+                .fa{
+                    position: absolute;
+                    bottom: 5px;
+                    right: 10px;
+                }
+            }
+            .question{
+                height: 150px;
+            }
+        }
+    }
+}
+//動画
+.movie-container{
+    width: 100%;
+    height: 100%;
+    padding: 0 25px;
+    margin-top: 124px;
+    margin-bottom: 50px;
+    @include mb{
+        padding: 0 5px;
+    }
+    .movie{
+        max-width: 1440px;
+        margin: 0 auto;
+        margin-top: 30px;
+        box-shadow: 0px 3px 6px #00000029;
+        video{
+            width: 100%;
+        }
+        .movie-title{
+            border-bottom: solid 1px #ccc;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            @include smb{
+                padding: 5px;
+            }
+            .title{
+                font-size: 20px;
+                font-weight: bold;
+                margin-right: 10px;
+                @include sp{
+                    padding-bottom: 5px;
+                    width: 100%;
+                    margin-right: unset;
+                }
+                @include smb{
+                    font-size: 17px;
+                }
+            }
+            .created{
+                margin-right: 5px;
+                @include smb{
+                    font-size: 12px;
+                }
+            }
+            .edit-movie{
+                border-radius: 50%;
+                margin-right: 5px;
+            }
+            .edit-movie:hover{
+                opacity: 0.8;
+            }
+        }
+        .avatar{
+            border-bottom: solid 1px #ccc;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            a{
+                display: flex;
+                align-items: center;
+                .avatar-icon{
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 100%;
+                    border:solid 1px #444444;
+                    position: relative;
+                    overflow: hidden;
+                    img{
+                        position: absolute;
+                    }
+                }
+                .avatar-name{
+                    font-size: 15px;
+                    font-weight: bold;
+                    margin-right: 10px;
+                }
+            }
+        }
+        .movie-info{
+            padding: 10px;
+            p{
+                font-weight: bold;
+            }
+        }
+        .option {
+            position: relative;
+            .toggle {
+                display: none;
+            }
+            .title,
+            .content {
+                backface-visibility: hidden;
+                transform: translateZ(0);
+                transition: all 0.3s;
+            }
+            .title {
+                border-bottom: solid 1px #ccc;
+                color:#444444;
+                padding: 1em;
+                display: block;
+                font-weight: bold;
+                @include smb{
+                    padding: 10px 5px;
+                }
+            }
+            .title::after,
+            .title::before {
+                content: "";
+                position: absolute;
+                right: 1.25em;
+                top: 1.25em;
+                width: 2px;
+                height: 0.75em;
+                background-color: #999;
+                transition: all 0.3s;
+            }
+            .title::after {
+                transform: rotate(90deg);
+            }
+            .content {
+                max-height: 0;
+                overflow: hidden;
+                border-bottom: solid 1px #ccc;
+                .movie_rate{
+                    padding: 1em;
+                    border-bottom: 1px solid #E5E5E5;
+                    @include smb{
+                        padding: 10px 5px;
+                    }
+                }
+                textarea {
+                    resize: none;
+                    width:50%;
+                    height:20px;
+                    vertical-align: middle;
+                    @include smb{
+                        height: 17px;
+                    }
+                }
+                .comments{
+                    .comment-box{
+                        padding: 1em 0;
+                        margin: 0 1em;
+                        border-bottom: solid 1px #ccc;
+                        .comment-info{
+                            display: flex;
+                            align-items: center;
+                            flex-wrap: wrap;
+                            margin-bottom: 10px;
+                            .symbol{
+                                margin-left: 0;
+                            }
+                            .come-user{
+                                display: flex;
+                                align-items: center;
+                                @include mb{
+                                    width: 100%;
+                                }
+                                .comment-name{
+                                    font-weight: bold;
+                                    margin-right: 10px;
+                                }
+                            }
+                            .time{
+                                margin-right: 10px;
+                            }
+                            .edit-movie{
+                                border-radius: 50%;
+                                margin-right: 5px;
+                            }
+                            .edit-movie:hover{
+                                opacity: 0.8;
+                            }
+                        }
+                    }
+                }
+            }
+            .info{
+                padding: 0.5em 1em 1em;
+                font-size: 0.9em;
+                line-height: 1.5;
+            }
+            .toggle:checked + .title + .content {
+                max-height: 500px;
+                transition: all 1.5s;
+            }
+            .toggle:checked + .title::before {
+                transform: rotate(90deg) !important;
+            }
+        }
+    }
+}
+//コメ入力
+.movie_rate{
+    color: #444444;
+    span{
+        @include mb{
+            display: none;
+        }
+    }
+    textarea{
+        padding: 5px;
+        border-radius: 20px;
+        border: 2px solid #444444;
+    }
+    input{
+        border-radius: 20px;
+        border: 2px solid #444444;
+        color: #FFFFFF;
+        background-color: #444444;
+    }
+    input:hover{
+        box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+        transform: translateY(-1px);
+    }
+}
+//先生・生徒マーク
+.symbol{
+    font-size: 10px;
+    font-weight: bold;
+    padding:5px 10px;
+    border:solid 2px #444444;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.student{
+    background-color: #00FF00;
+}
+.teacher{
+    background-color: #a6a80e;
+}
+
+/*ページネーション自体のデザイン*/
+.pagination { 
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    span{ 
+        border-top: 2px solid #999;
+        padding-top: 10px;
+        a{ 
+            font-size: 20px;
+            color: #696969; 
+            padding: 10px;
+        }
+        a:hover{
+            opacity: 0.8;
+        }
+    }
+    .current{
+        color: #696969;
+        font-size: 20px; 
+        font-weight: bold; 
+    }
+}
+
+
+
+
+

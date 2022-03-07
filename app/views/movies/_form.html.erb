@@ -1,0 +1,43 @@
+<%= form_with(model: movie, local: true, class:"form") do |form| %>
+  <% if movie.errors.any? %>
+    <div id="error_explanation" >
+      <h2><%= pluralize(movie.errors.count, "件") %> のエラーが発生したため保存されませんでした。</h2>
+
+      <ul>
+      <% movie.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :タイトル（30文字以内）, class:"text" %>
+    <%= form.text_field :title, class:"text-title" %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :コメント（400文字以内）, class:"text" %>
+    <%= form.text_area :content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :動画 , class:"text" %>
+    <div id="attachment">
+      <label class="file-select">
+        <%= form.file_field :movie, class:"fileinput"%>ファイルを選択
+      </label>
+      <% if movie.movie.attached? %>
+        <br class="brbr"><span class="filename">選択済み</span>
+      <% else %>
+        <br class="brbr"><span class="filename">選択されていません</span>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "投稿する" %>
+  </div>
+  <p class="tyui">⚠︎内容が相応しくないと判断された場合、管理者権限によって投稿が削除されます。</p>
+<% end %>

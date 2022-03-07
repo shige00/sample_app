@@ -1,0 +1,31 @@
+<div class="movies-box">
+    <% if questions.empty? %>
+        <h2 class="noting">まだ質問投稿はありません。</h2>
+    <% else %>
+        <% questions.each do |question| %>
+            <div class="movie-box question">
+                <div class="movie-info">
+                    <div class="movie-left">
+                        <%= link_to question.title.truncate(16), question, class:"movie-title" %>
+                        <%= link_to "質問:#{question.content.truncate(55)}", question, class:"movie-title"%>
+                        <% if question.auther.nil? %>
+                            <p class="movie-auther"><%= "投稿者:no_name" %></p>
+                        <% else %>
+                            <p class="movie-auther"><%= "投稿者:#{question.auther}" %></p>
+                        <% end %>
+                    </div>
+                    <div class="movie-right">
+                        <% if user_signed_in? && question.user_id == current_user.id %>
+                            <%= link_to edit_question_path(question), class:"edit-movie" do%>
+                                <%= image_tag  "/images/hensyu.png", :size =>'30x30'%>
+                            <% end %>
+                            <%= link_to  question, method: :delete, data: { confirm: '本当に削除しますか？' }, class:"edit-movie" do%>
+                                <%= image_tag  "/images/sakujyo.png", :size =>'30x30'%>
+                            <% end %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+</div>

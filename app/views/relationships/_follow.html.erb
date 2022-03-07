@@ -1,0 +1,7 @@
+<% if user_signed_in? && current_user !=  user%>
+    <% if current_user.following?(user) %>
+        <%= button_to 'フォロー中', relationship_path(current_user.relationships.find_by(follow: user)), method: :delete, remote: true, class: "unfollow-btn follome" %>
+    <% else %>
+        <%= button_to 'フォローする', relationships_path(follow: user), remote: true, class: "follow-btn follome" %>
+    <% end %>
+<% end %>

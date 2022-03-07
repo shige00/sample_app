@@ -1,0 +1,44 @@
+<div class="movies">
+  <div class="search-form">
+    <%= search_form_for @q, url: movies_path, class: "search_container" do |f| %>
+      <%= f.search_field :title_or_content_or_auther_cont, placeholder: "キーワード検索" %>
+      <%= button_tag :type => "submit", :class =>"btn-s-md" do %>
+        <i class="fa fa-search"></i>
+      <% end %>
+    <% end %>
+  </div>
+  <% if user_signed_in? %>
+    <%= link_to  new_movie_path, class:"new-movie" do%>
+      <i class="fa fa-edit fa-2x"></i>
+      <p>新規投稿</p>
+    <% end %>
+  <% end %>
+  <table class="movies-container">
+    <tbody class="movie-boxs">
+      <% if @movies.empty? %>
+        <h2 class="noting">該当するHow-to投稿がありません。</h2>
+      <% else %>
+        <% @movies.each do |movie| %>
+          <tr class="movie-box howto">
+            <td>
+              <% if movie.movie.attached? %>
+                <%= link_to movie do %>
+                  <%= image_tag movie.movie.preview(resize: "400x400").processed, class:"movie-pre"%>
+                <% end %>
+              <% end %>
+            </td>
+            <td><%= link_to movie.title.truncate(16), movie, class:"movie-title" %></td>
+            <% if movie.auther.nil? %>
+              <td class="movie-title"><%= "投稿者:no_name" %></td>
+            <% else %>
+              <td class="movie-auther"><%= "投稿者:#{movie.auther}" %></td>
+            <% end %>
+            <td class="fa fa-heart" style="color: #e54747;"><%= movie.likes.count %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @movies %>
+</div>
+

@@ -1,0 +1,34 @@
+<div class="comment-box">
+    <div class="comment-info">
+        <% user = User.find(answer.user_id) %>
+        <% movies = Movie.where(user_id: user.id) %>
+        <% likes = Like.where(movie_id: movies.ids)%>
+        <% answers = Answer.where(user_id: user.id) %>
+        <% nices = Nice.where(answer_id: answers.ids) %>
+        <%= link_to user, class:"come-user" do %>
+            <% if likes.count + nices.count >= 100%>
+                <p class="symbol teacher">先生</p>
+            <% else %>
+                <p class="symbol student">生徒</p>
+            <% end %>
+            <% if user.name.nil? %>
+                <p class="comment-name"><%= "no_name" %></p>
+            <% else %>
+                <p class="comment-name"><%= user.name %></p>
+            <% end %>
+        <% end %>
+        <p class="time"><%= answer.created_at %></p>
+        <% if user_signed_in? && answer.user_id == current_user.id %>
+            <p><%= link_to  [@movie, answer], method: :delete, remote: true, data: { confirm: '本当に削除しますか？' }, class:"edit-movie" do %>
+                    <%= image_tag  "/images/sakujyo.png", :size =>'30x30'%>
+                <% end %>
+            </p>
+            <p class="fa fa-heart" style="color: #e54747;"><%= answer.nices.count %></p>
+        <% else %>
+            <div id="nices_buttons_<%= answer.id %>">
+                <%= render partial: 'nices/nice', locals: {answer: answer} %>
+            </div>
+        <% end %>
+    </div>
+    <p><%= sanitize answer.content %></p>
+</div>

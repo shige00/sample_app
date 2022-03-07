@@ -1,0 +1,36 @@
+<div class="movies">
+  <div class="search-form">
+    <%= search_form_for @q, url: questions_path, class: "search_container" do |f| %>
+      <%= f.search_field :title_or_content_or_auther_cont, placeholder: "キーワード検索" %>
+      <%= button_tag :type => "submit", :class =>"btn-s-md" do %>
+        <i class="fa fa-search"></i>
+      <% end %>
+    <% end %>
+  </div>
+  <% if user_signed_in? %>
+    <%= link_to  new_question_path, class:"new-movie" do%>
+      <i class="fa fa-edit fa-2x"></i>
+      <p>新規投稿</p>
+    <% end %>
+  <% end %>
+  <table class="movies-container">
+    <tbody class="movie-boxs">
+      <% if @movies.empty? %>
+        <h2 class="noting">該当する質問投稿がありません。</h2>
+      <% else %>
+        <% @movies.each do |movie| %>
+          <tr class="movie-box question">
+            <td><%= link_to movie.title.truncate(16), movie, class:"movie-title" %></td>
+            <td><%= link_to "質問:#{movie.content.truncate(55)}", movie, class:"movie-title"%></td>
+            <% if movie.auther.nil? %>
+              <td class="movie-auther"><%= "投稿者:no_name" %></td>
+            <% else %>
+              <td class="movie-auther"><%= "投稿者:#{movie.auther}" %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @movies %>
+</div>

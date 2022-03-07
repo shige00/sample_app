@@ -1,0 +1,28 @@
+<div class="follow-container">
+    <h2 class="follow-title">follower</h2>
+    <div class="follow-boxs">
+        <% @followers.each do |follower| %>
+            <% user = User.find(follower.user_id)%>
+            <div class="follow-box">
+                <%= link_to user do %>
+                    <div class="avatar-icon">
+                        <% if user.avatar.attached? %>
+                            <%= image_tag user.avatar, :size =>'100x100', class:'icon' %>
+                        <% else %>
+                            <%= image_tag "/images/avatar.png", :size =>'100x100',  class: "icon" %>
+                        <% end %>
+                    </div>
+                    <% if user.name.nil? %>
+                        <p class="follow-name"><%= "no-name" %></p>
+                    <% else %>
+                        <p class="follow-name"><%= user.name %></p>
+                    <% end %>
+                <% end %>
+                <div id="follow-button-<%= user.id %>" class="follow-button">
+                    <%= render partial: 'relationships/follow', locals: {user: user} %>
+                </div>
+            </div>
+        <% end %>
+    </div>
+    <%= link_to '戻る', @user , class:"back"%>
+</div>

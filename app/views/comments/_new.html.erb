@@ -1,0 +1,7 @@
+<%= form_with(model: [ @movie, Comment.new], remote: true) do |form| %>
+    <div class="movie_rate">
+        <span>あなたのコメント:</span>
+        <%= form.text_area :content %>
+        <%= form.submit "コメントする"%>
+    </div>
+<% end %>

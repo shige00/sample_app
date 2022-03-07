@@ -1,0 +1,314 @@
+$sp: 1000px; 
+$mb: 599px;
+$smb: 390px;
+@mixin sp {
+    @media (max-width: ($sp)) {
+        @content;
+    }
+}
+@mixin mb {
+    @media (max-width: ($mb)) {
+        @content;
+    }
+}
+@mixin smb {
+    @media (max-width: ($smb)) {
+        @content;
+    }
+}
+//プロフ
+.avatar-inner{
+    max-width: 1022px;
+    margin: 0 auto;
+    height: 100%;
+    margin-top: 94px;
+    padding: 0 10px;
+    .avatar-info{
+        display: flex;
+        align-items: center;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        @include mb{
+            flex-direction: column;
+            padding-top: 25px;
+            padding-bottom: 25px;
+        }
+        .avatar-left{
+            text-align: center;
+            margin-left: 50px;
+            @include sp{
+                margin-left: 10px;
+            }
+            @include mb{
+                margin-left: 0px;
+                margin-bottom: 10px;
+            }
+            .avatar-icon{
+                width: 200px;
+                height: 200px;
+                border-radius: 100%;
+                border:solid 2px #444444;
+                overflow: hidden;
+                @include sp{
+                    width: 170px;
+                    height: 170px;
+                }
+            }
+        }
+        .avatar-right{
+            margin-left: 50px;
+            @include sp{
+                margin-left: 20px;
+            }
+            @include mb{
+                margin-left: 0px;
+            }
+            .avatar-name{
+                display: flex;
+                align-items: center;
+                margin-bottom: 40px;
+                @include mb{
+                    margin-bottom: 20px;
+                }
+                .mark{
+                    font-size: 20px;
+                    font-weight: bold;
+                    padding:5px 10px;
+                    border:solid 2px #444444;
+                    border-radius: 5px;
+                    margin-right: 20px;
+                    @include sp{
+                        margin-right: 10px;
+                    }
+                    @include mb{
+                        margin-right: 5px;
+                        font-size: 15px;
+                    }
+                }
+                .name{
+                    font-size: 30px;
+                    font-weight: bold;
+                    @include mb{
+                        font-size: 22px;
+                    }
+                }
+            }
+            .avatar-edit{
+                .nav-link{
+                    @include sp{
+                        line-height: 1.6;
+                    }
+                }
+                br{
+                    display: none;
+                    @include sp{
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+    .tab-list{
+        display: flex;
+    }
+    .movies-box{
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+        .movie-box{
+        width: 50%;
+        border:solid 2px #FFFFFF;
+        border-radius: 5px;
+        box-shadow: 0px 3px 6px #00000029;
+        padding:5px;
+        position: relative;
+        padding-bottom: 30px;
+        @include mb{
+            width: 100%;
+        }
+            .movie-pre{
+                width: 100%;
+                border-radius: 20px;
+            }
+            .movie-info{
+                display: flex;
+                justify-content: space-between;
+                .movie-left{
+                    display: flex;
+                    flex-direction: column;
+                    .movie-title{
+                        font-weight: bold;
+                        line-height: 1.4;
+                        color:#444444;
+                        @include smb{
+                            font-size: 14px;
+                        }
+                    }
+                    .movie-auther{
+                        color: #444444;
+                        font-size: 14px;
+                        line-height: 1.4;
+                        position: absolute;
+                        bottom: 5px;
+                    }
+                }
+                .movie-right{
+                    display: flex;
+                    align-items: center;
+                    position: absolute;
+                    bottom: 5px;
+                    right: 10px;
+                    @include smb{
+                        bottom: 2px;
+                    }
+                    .edit-movie{
+                        display: block;
+                        border-radius: 50%;
+                        margin-right: 5px;
+                    }
+                    .edit-movie:hover{
+                        opacity: 0.8;
+                    }
+                }
+            }
+        }
+        .question{
+            height: 150px;
+        }
+    }
+}
+//フォロー　フォロワー一覧
+.follow-container{
+    text-align: center;
+    padding: 0 10px;
+    @include sp{
+        padding: 0 5px;
+    }
+    .follow-title{
+        font-size: 35px;
+        font-weight: bold;
+        margin-top: 114px;
+        margin-bottom: 20px;
+    }
+    .follow-boxs{
+    margin: 0 auto;
+    margin-bottom: 20px;
+    max-width: 1022px;
+    display: flex;
+    flex-wrap: wrap;
+    @include sp{
+        padding: 0 80px;
+    }
+    @include mb{
+        padding: 0;
+    }
+        .follow-box{
+        padding: 10px;
+        width: 50%;
+        display: flex;
+        border:solid 2px #FFFFFF;
+        border-radius: 5px;
+        box-shadow: 0px 3px 6px #00000029;
+        position: relative;
+        @include sp{
+            width: 100%;
+        }
+        @include mb{
+            padding: 5px;
+        }
+        a{
+            display: flex;
+            align-items: center;
+            .avatar-icon{
+                width: 100px;
+                height: 100px;
+                border-radius: 100%;
+                border:solid 2px #444444;
+                overflow: hidden;
+                @include mb{
+                    width: 90px;
+                    height: 90px;
+                }
+            }
+            .follow-name{
+                font-size: 24px;
+                font-weight: bold;
+                margin-left: 10px;
+                @include sp{
+                    font-size: 20px;
+                    margin-left: 5px;
+                }
+            }
+        }
+        .follow-button{
+            position: absolute;
+            top: 67%;
+            left: 75%;
+            @include sp{
+                left: 70%;
+            }
+        }
+        }
+    }
+}
+
+// タブ切り替え
+.tab {
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    border: solid 1px #CCC;
+    text-align: center;
+    font-weight: bold;
+    @include sp{
+        font-size: 14px;
+    }
+    @include mb{
+        padding: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: unset;
+    }
+}
+.tab:first-child {
+    border-right: none;
+}
+.tab:nth-child(2) {
+    border-right: none;
+}
+.tab:last-child {
+    border-left: none;
+}
+  // タブがactiveのときのデザイン
+.tab-active {
+    color: #FFF;
+    background: #19b5d1;
+    transition: all 0.2s ease-in-out;
+}
+  // タブの中身、最初は非表示
+.tabbox {
+    display: none;
+    padding: 15px;
+}
+  // box-showクラスのものだけ表示
+.box-show {
+    display: block;
+}
+  // hover時のアクション
+.tab:hover{
+    box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+    transform: translateY(-1px);
+}
+//画像編集プレビュー
+.prev-content{
+    margin: 0 auto;
+    margin-bottom: 20px;
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    border:solid 2px #444444;
+    background-color: #FFFFFF;
+    overflow: hidden;
+}
+
