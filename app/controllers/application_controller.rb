@@ -10,10 +10,3 @@ protected
     end
 end
 
-rescue_from Rack::Timeout::RequestTimeoutException do |e|
-    if request.xhr?
-        render json: {error: 'Timeout'}, status: :request_timeout
-    else
-        render plain: 'Timeout', status: :request_timeout
-    end
-end
