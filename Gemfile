@@ -86,3 +86,5 @@ gem 'ransack'
 gem 'active_storage_validations'
 
 gem 'rails-i18n'
+
+gem 'rack-timeout'

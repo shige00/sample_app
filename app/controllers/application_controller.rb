@@ -9,3 +9,11 @@ protected
         devise_parameter_sanitizer.permit(:account_update, keys: %i(avatar))
     end
 end
+
+rescue_from Rack::Timeout::RequestTimeoutException do |e|
+    if request.xhr?
+        render json: {error: 'Timeout'}, status: :request_timeout
+    else
+        render plain: 'Timeout', status: :request_timeout
+    end
+end
