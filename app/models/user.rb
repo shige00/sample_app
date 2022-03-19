@@ -19,7 +19,7 @@ class User < ApplicationRecord
     has_many :followers, through: :passive_relationships, source: :user
 
     validates :avatar, content_type: ['image/png', 'image/jpg', 'image/jpeg']
-    validates :name, presence: true, length: { maximum: 10}
+    validates :name,  length: { maximum: 10}
     # 動画にすでにいいねしているか確認
     def liked_by?(movie_id)
       likes.where(movie_id: movie_id).exists?
