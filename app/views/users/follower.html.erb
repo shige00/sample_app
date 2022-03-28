@@ -1,5 +1,8 @@
 <div class="follow-container">
     <h2 class="follow-title">follower</h2>
+    <% if @followers.empty? %>
+        <h2 class="noting">まだフォロワーがいません。</h2>
+    <% end %>
     <div class="follow-boxs">
         <% @followers.each do |follower| %>
             <% user = User.find(follower.user_id)%>

@@ -7,7 +7,7 @@ class Movie < ApplicationRecord
 
     validates :title, presence: true, length: { maximum: 30}
     validates :content, length: { maximum: 400}
-    validates :movie, attached: true, content_type: 'video/mp4'
+    validates :movie, attached: true, content_type: ['video/mp4', 'video/MOV', 'video/wmv']
 end
 
 

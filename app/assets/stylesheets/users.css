@@ -261,6 +261,10 @@
   }
 }
 
+.follow-container .noting {
+  margin-top: 20px;
+}
+
 .follow-container .follow-title {
   font-size: 35px;
   font-weight: bold;

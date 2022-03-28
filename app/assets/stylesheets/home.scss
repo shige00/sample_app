@@ -171,7 +171,7 @@ li{
         height: 430px;
     }
     @include mb{
-        height: 500px;
+        height: 535px;
     }
     .mv-inner{
         margin: 0 auto;
@@ -188,6 +188,9 @@ li{
         .mv-left{
             text-align: left;
             margin-top: 160px;
+            @include sp{
+                margin-top: 80px;
+            }
             @include mb{
                 margin-top: 20px;
                 text-align: center;
@@ -232,19 +235,28 @@ li{
                     font-size: 13px;
                 }
                 @include mb{
-                    margin-bottom: unset;
+                    margin-bottom: 10px;
                 }
             }
             .btn{
+                display: inline-block;
                 height: 37px;
                 width: 130px;
                 color: #FFFFFF;
-                font-size: 14px;
+                font-size: 20px;
+                font-weight: bold;
                 line-height: 1.42;
                 border-radius: 10px;
                 background: transparent linear-gradient(90deg, #FA41CC 0%, #6020B0 100%) 0% 0% no-repeat padding-box;
-                padding-top: 8.5px;
-                padding-left: 35px;
+                padding:4px 25px;
+                @include mb{
+                    font-size: 17px;
+                    padding-top: 6px;
+                }
+            }
+            .btn:hover{
+                box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+                transform: translateY(-1px);
             }
         }
         .mv-right{
@@ -521,7 +533,7 @@ li{
         font-size: 40px;
     }
     @include mb{
-        margin-top: 25px;
+        margin-top: 60px;
         font-size: 35px;
     }
 }

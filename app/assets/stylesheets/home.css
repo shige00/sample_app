@@ -192,7 +192,7 @@ li {
 
 @media (max-width: 599px) {
   .mv {
-    height: 500px;
+    height: 535px;
   }
 }
 
@@ -226,6 +226,12 @@ li {
 .mv .mv-inner .mv-left {
   text-align: left;
   margin-top: 160px;
+}
+
+@media (max-width: 1000px) {
+  .mv .mv-inner .mv-left {
+    margin-top: 80px;
+  }
 }
 
 @media (max-width: 599px) {
@@ -294,21 +300,36 @@ li {
 
 @media (max-width: 599px) {
   .mv .mv-inner .mv-left .mv-txt {
-    margin-bottom: unset;
+    margin-bottom: 10px;
   }
 }
 
 .mv .mv-inner .mv-left .btn {
+  display: inline-block;
   height: 37px;
   width: 130px;
   color: #FFFFFF;
-  font-size: 14px;
+  font-size: 20px;
+  font-weight: bold;
   line-height: 1.42;
   border-radius: 10px;
   background: transparent -webkit-gradient(linear, left top, right top, from(#FA41CC), to(#6020B0)) 0% 0% no-repeat padding-box;
   background: transparent linear-gradient(90deg, #FA41CC 0%, #6020B0 100%) 0% 0% no-repeat padding-box;
-  padding-top: 8.5px;
-  padding-left: 35px;
+  padding: 4px 25px;
+}
+
+@media (max-width: 599px) {
+  .mv .mv-inner .mv-left .btn {
+    font-size: 17px;
+    padding-top: 6px;
+  }
+}
+
+.mv .mv-inner .mv-left .btn:hover {
+  -webkit-box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+          box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.5);
+  -webkit-transform: translateY(-1px);
+          transform: translateY(-1px);
 }
 
 .mv .mv-inner .mv-right {
@@ -683,7 +704,7 @@ li {
 
 @media (max-width: 599px) {
   .noting {
-    margin-top: 25px;
+    margin-top: 60px;
     font-size: 35px;
   }
 }

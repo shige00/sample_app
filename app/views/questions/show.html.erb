@@ -3,7 +3,7 @@
   <h2 class="howto-title">Question</h2>
   <div class="movie">
     <% if @movie.movie.attached? %>
-      <video src="<%= rails_blob_path(@movie.movie) %>" type="video/mp4" controls></video>
+      <video src="<%= rails_blob_path(@movie.movie) %>" type="video/MOV" controls></video>
     <% end %>
     <div class="movie-title">
       <p class="title">
