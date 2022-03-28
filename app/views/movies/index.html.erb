@@ -19,12 +19,11 @@
         <h2 class="noting">該当するHow-to投稿がありません。</h2>
       <% else %>
         <% @movies.each do |movie| %>
-          <% movie.movie.analyze %>
           <tr class="movie-box howto">
             <td>
               <% if movie.movie.attached? %>
                 <%= link_to movie do %>
-                  <%= image_tag movie.movie.representation(resize: "400x400"), class:"movie-pre"%>
+                  <%= image_tag movie.movie.representation(resize_to_limit: [400, 400]).processed.url, class:"movie-pre"%>
                 <% end %>
               <% end %>
             </td>
