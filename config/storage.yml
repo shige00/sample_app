@@ -13,6 +13,21 @@ amazon:
   bucket: ""
   region: "" # e.g. 'us-east-1'
 
+gcs: &gcs
+  service: GCS
+  project: ""
+
+private_gcs:
+  <<: *gcs
+  credentials: <%= Rails.root.join("path/to/private_keyfile.json") %>
+  bucket: ""
+
+public_gcs:
+  <<: *gcs
+  credentials: <%= Rails.root.join("path/to/public_keyfile.json") %>
+  bucket: ""
+  public: true
+
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
 #   service: S3
