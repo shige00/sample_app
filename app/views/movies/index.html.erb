@@ -23,7 +23,7 @@
             <td>
               <% if movie.movie.attached? %>
                 <%= link_to movie do %>
-                  <%= image_tag movie.movie.representation(resize_to_limit: [400, 400]), class:"movie-pre"%>
+                  <%= image_tag movie.movie.representation(resize: "300x300"), class:"movie-pre"%>
                 <% end %>
               <% end %>
             </td>

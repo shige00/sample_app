@@ -73,7 +73,7 @@ gem 'devise'
 
 gem 'carrierwave'
 
-gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.10.1'
 
 gem "image_processing", ">= 1.2"
 
@@ -92,3 +92,5 @@ gem 'rack-timeout'
 gem 'terser'
 
 gem 'aws-sdk-s3', require: false
+
+gem 'rmagick'
