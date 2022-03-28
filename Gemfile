@@ -90,3 +90,5 @@ gem 'rails-i18n'
 gem 'rack-timeout'
 
 gem 'terser'
+
+gem 'aws-sdk-s3', require: false
