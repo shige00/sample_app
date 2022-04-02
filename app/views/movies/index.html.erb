@@ -18,12 +18,12 @@
       <% if @movies.empty? %>
         <h2 class="noting">該当するHow-to投稿がありません。</h2>
       <% else %>
-        <% @movies.each do |movie| %>
+        <% @movies.each do |movie| %> 
           <tr class="movie-box howto">
             <td>
               <% if movie.movie.attached? %>
                 <%= link_to movie do %>
-                  <%= image_tag movie.movie.representation(resize: "300x300"), class:"movie-pre"%>
+                  <%= video_tag rails_blob_path(movie.movie), class:"movie-pre"%>
                 <% end %>
               <% end %>
             </td>

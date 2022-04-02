@@ -94,3 +94,5 @@ gem 'terser'
 gem 'aws-sdk-s3', require: false
 
 gem 'rmagick'
+
+gem 'dotenv-rails'
