@@ -6,7 +6,7 @@
             <div class="movie-box howto">
                 <% if movie.movie.attached? %>
                     <%= link_to movie do %>
-                        <%= video_tag rails_blob_path(movie.movie), playsinline: :true, class:"movie-pre"%>
+                        <%= video_tag rails_blob_path(movie.movie), playsinline: :true ,  loop: :true, muted: :true, class:"movie-pre"%>
                     <% end %>
                 <% end %>
                 <div class="movie-info">
