@@ -20,16 +20,14 @@
       <% else %>
         <% @movies.each do |movie| %> 
           <tr class="movie-box howto">
-            <td>
-              <% if movie.movie.attached? %>
-                <%= link_to movie do %>
-                  <%= image_tag movie.movie.preview(resize_to_limit: [100, 100]), class:"movie-pre"%>
-                <% end %>
-              <% end %>
-            </td>
             <td><%= link_to movie.title.truncate(16), movie, class:"movie-title" %></td>
+            <% if movie.content.empty? %>
+              <td class="movie-title"><%= "動画説明:記載なし" %></td>
+            <% else %>
+              <td><%= link_to "動画説明:#{movie.content.truncate(50)}", movie, class:"movie-title"%></td>
+            <% end %>
             <% if movie.auther.nil? %>
-              <td class="movie-title"><%= "投稿者:no_name" %></td>
+              <td class="movie-auther"><%= "投稿者:no_name" %></td>
             <% else %>
               <td class="movie-auther"><%= "投稿者:#{movie.auther}" %></td>
             <% end %>
