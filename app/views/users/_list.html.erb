@@ -6,7 +6,7 @@
             <div class="movie-box howto">
                 <% if movie.movie.attached? %>
                     <%= link_to movie do %>
-                        <%= image_tag movie.movie.preview(resize_to_limit: [100, 100]).processed.url, class:"movie-pre"%>
+                        <%= image_tag movie.movie.preview(resize_to_limit: [100, 100]), class:"movie-pre"%>
                     <% end %>
                 <% end %>
                 <div class="movie-info">
