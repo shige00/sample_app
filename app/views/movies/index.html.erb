@@ -22,7 +22,7 @@
           <tr class="movie-box howto">
             <td><%= link_to movie.title.truncate(16), movie, class:"movie-title" %></td>
             <% if movie.content.empty? %>
-              <td class="movie-title"><%= "動画説明:記載なし" %></td>
+              <td><%= link_to "動画説明:記載なし", movie, class:"movie-title"%>/td>
             <% else %>
               <td><%= link_to "動画説明:#{movie.content.truncate(50)}", movie, class:"movie-title"%></td>
             <% end %>

@@ -8,7 +8,7 @@
                     <div class="movie-left">
                         <%= link_to movie.title.truncate(16), movie, class:"movie-title" %>
                         <% if movie.content.empty? %>
-                            <p class="movie-title"><%= "動画説明:記載なし" %></p>
+                            <%= link_to "動画説明:記載なし", movie, class:"movie-title"%>
                         <% else %>
                             <%= link_to "動画説明:#{movie.content.truncate(50)}", movie, class:"movie-title"%>
                         <% end %>
