@@ -6,5 +6,5 @@ class Question < ApplicationRecord
 
     validates :title, presence: true, length: { maximum: 30}
     validates :content, presence: true, length: { maximum: 400}
-    validates :movie, content_type: ['video/mp4', 'video/MOV', 'video/wmv']
+    validates :movie, content_type: ['video/mp4', 'video/quicktime', 'video/mpeg']
 end
